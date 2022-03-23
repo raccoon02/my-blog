@@ -4,20 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Today MyBlog</title>
+    <title>MyBlog</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
 
     <style>
         @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 
         body {
             margin: 0px;
-        }
-
-        .area-edit {
-            display: none;
+            background-color: #868e96;
         }
 
         .wrap {
@@ -28,11 +24,6 @@
         #contents {
             width: 538px;
         }
-
-        /*.area-write {*/
-        /*    position: relative;*/
-        /*    width: 538px;*/
-        /*}*/
 
         .area-write img {
             cursor: pointer;
@@ -49,7 +40,6 @@
             top: 0px;
             width: 100%;
             height: 428px;
-            background-color: #4BAF4B;
         }
 
         .background-body {
@@ -58,7 +48,6 @@
             top: 428px;
             height: 100%;
             width: 100%;
-            background-color: #dee2e6;
         }
 
         .header {
@@ -66,7 +55,6 @@
         }
 
         .header h2 {
-            /*font-family: 'Noto Sans KR', sans-serif;*/
             height: 33px;
             font-size: 42px;
             font-weight: 500;
@@ -74,21 +62,6 @@
             font-style: normal;
             line-height: 0.79;
             letter-spacing: -0.5px;
-            text-align: center;
-            color: #ffffff;
-        }
-
-        .header p {
-            margin: 40px auto;
-            width: 230px;
-            height: 48px;
-            font-family: 'Noto Sans KR', sans-serif;
-            font-size: 16px;
-            font-weight: 500;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: 1.5;
-            letter-spacing: -1.12px;
             text-align: center;
             color: #ffffff;
         }
@@ -194,7 +167,6 @@
             resize: none;
             border-bottom: 1px solid #212529;
             width: 100%;
-            font-family: 'Spoqa Han Sans';
         }
 
         .contents input.te-edit {
@@ -204,7 +176,6 @@
             resize: none;
             border-bottom: 1px solid #212529;
             width: 100%;
-            font-family: 'Spoqa Han Sans';
         }
 
         .footer {
@@ -311,26 +282,6 @@
             letter-spacing: -1.1px;
             color: #000000;
         }
-
-        /*.popup input {*/
-        /*    width: 330px;*/
-        /*    height: 15px;*/
-        /*    border-radius: 2px;*/
-        /*    border: solid 1.1px #dee2e6;*/
-        /*    margin-right: 9px;*/
-        /*    margin-bottom: 10px;*/
-        /*    padding-left: 10px;*/
-        /*}*/
-
-        /*.popup textarea {*/
-        /*    width: 630px;*/
-        /*    height: 15px;*/
-        /*    border-radius: 2px;*/
-        /*    border: solid 1.1px #dee2e6;*/
-        /*    margin-right: 9px;*/
-        /*    margin-bottom: 10px;*/
-        /*    padding-left: 10px;*/
-        /*}*/
 
         .popup button.close {
             position: absolute;
@@ -641,13 +592,9 @@
 </div>
 <div class="wrap">
     <div class="header">
-        <h2>Today MyBlog</h2>
-        <p>
-            오늘 하루를 돌아보고 기록하는 공간!
-            여러분들의 하루를 공유해주세요
-        </p>
+        <h2>나의 블로그</h2>
     </div>
-    <input class="field" type="text" size="50" onclick="addProduct()">
+    <button class="editbtn" onclick="addProduct()">글쓰기</button>
 
     <div id="container" class="popup-container">
         <div class="popup">
@@ -658,9 +605,8 @@
 
             <div class="area-write">
                 <input class="field" type="text" id="title" placeholder="제목">
-                <textarea class="field" placeholder="기록하고 싶은 내용을 입력해주세요" name="contents" id="contents" cols="30"
+                <textarea class="field" placeholder="내용" name="contents" id="contents" cols="30"
                           rows="10"></textarea>
-
             </div>
             <button class="cta" onclick="writePost()">작성하기</button>
         </div>
