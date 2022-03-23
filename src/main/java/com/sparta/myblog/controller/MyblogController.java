@@ -5,7 +5,6 @@ import com.sparta.myblog.models.MyblogRepository;
 import com.sparta.myblog.models.MyblogRequestDto;
 import com.sparta.myblog.service.MyblogService;
 import lombok.RequiredArgsConstructor;
-import org.openjsse.sun.net.util.IPAddressUtil;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
