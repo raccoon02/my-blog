@@ -23,13 +23,13 @@ public class Myblog extends Timestamped{
     private String text;
 
     public Myblog(MyblogRequestDto requestDto){
-        this.title = requestDto.getTitle();
+        this.title = requestDto.getTitle().replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\r\n","<br>");
         this.name = requestDto.getName();
-        this.text = requestDto.getText();
+        this.text = requestDto.getText().replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\r\n","<br>");
     }
 
     public void update(MyblogRequestDto requestDto) {
-        this.title = requestDto.getTitle();
-        this.text = requestDto.getText();
+        this.title = requestDto.getTitle().replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\r\n","<br>");
+        this.text = requestDto.getText().replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\r\n","<br>");
     }
 }
