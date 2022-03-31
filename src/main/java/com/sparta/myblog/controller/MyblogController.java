@@ -1,39 +1,36 @@
 package com.sparta.myblog.controller;
 
 import com.sparta.myblog.models.Myblog;
-import com.sparta.myblog.models.MyblogRepository;
-import com.sparta.myblog.models.MyblogRequestDto;
+import com.sparta.myblog.dto.MyblogRequestDto;
+import com.sparta.myblog.security.UserDetailsImpl;
 import com.sparta.myblog.service.MyblogService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+
 
 @RestController
 @RequiredArgsConstructor
 public class MyblogController {
-    private final MyblogRepository myblogRepository;
+
     private final MyblogService myblogService;
 
-    @PostMapping("/api/myblog")
-    public Myblog createMyblog(@RequestBody MyblogRequestDto requestDto){
-        Myblog myblog = new Myblog(requestDto);
-        return  myblogRepository.save(myblog);
+    @PostMapping("/api/myblogs")
+    public Myblog createBlog(@RequestBody MyblogRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        requestDto.setName(userDetails.getUsername());
+        return myblogService.createMyblog(requestDto);
     }
 
-    @GetMapping("/api/myblog")
-    public List<Myblog> getMyblog(){
-        return myblogRepository.findAllByOrderByModifiedAtDesc();
-    }
+    @GetMapping("/api/myblogs")
+    public List<Myblog> getMyblog() {return myblogService.getMyblog();}
 
-    @DeleteMapping("/api/myblog/{id}")
-    public Long deleteMyblog(@PathVariable Long id){
-        myblogRepository.deleteById(id);
-        return id;
+    @GetMapping("/api/myblogs/detail")
+    public ModelAndView getOneBlogAndComments(@RequestParam Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return myblogService.getOneBlogAndComments(id, userDetails);
     }
-
-    @PutMapping("/api/myblog/{id}")
-    public Long updateMyblog(@PathVariable Long id, @RequestBody MyblogRequestDto requestDto){
-        return myblogService.update(id, requestDto);
-    }
+    @DeleteMapping("/api/myblogs/{id}")
+    public Long deleteMyblog(@PathVariable Long id) {return myblogService.deleteMyblog(id);}
 }

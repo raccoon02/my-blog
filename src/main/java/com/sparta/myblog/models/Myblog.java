@@ -1,16 +1,19 @@
 package com.sparta.myblog.models;
 
+import com.sparta.myblog.dto.MyblogRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@NoArgsConstructor
-public class Myblog extends Timestamped{
+@Setter
+@NoArgsConstructor//파라미터가 없는 기본 생성자를 생성
+public class Myblog extends Timestamped {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -22,14 +25,9 @@ public class Myblog extends Timestamped{
     @Column(nullable = false)
     private String text;
 
-    public Myblog(MyblogRequestDto requestDto){
-        this.title = requestDto.getTitle().replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\r\n","<br>");
+    public Myblog(MyblogRequestDto requestDto) {
+        this.title = requestDto.getTitle();
         this.name = requestDto.getName();
-        this.text = requestDto.getText().replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\r\n","<br>");
-    }
-
-    public void update(MyblogRequestDto requestDto) {
-        this.title = requestDto.getTitle().replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\r\n","<br>");
-        this.text = requestDto.getText().replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\r\n","<br>");
+        this.text = requestDto.getText();
     }
 }
